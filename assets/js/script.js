@@ -33,7 +33,7 @@ function getCity() {
   var inputCity = document.getElementById('search-bar').value;
   //console.log(userInput);
   //console.log(searchButton.textContent);
-  var cityAPI = "https://api.openweathermap.org/data/2.5/forecast?q=%22"+inputCity+"%22&appid=dc51e86f28b41d77ff8619417bc35d08";
+  var cityAPI = "https://api.openweathermap.org/data/2.5/weather?q="+inputCity+"&APPID=dc51e86f28b41d77ff8619417bc35d08";
 
   fetch(cityAPI)
     .then(function (response) {
@@ -41,15 +41,16 @@ function getCity() {
     })
     .then(function (data) {
       console.log('Fetch Response \n-------------');
-      var lat = (data.city.coord.lat);
-      var lon =(data.city.coord.lon);
+      console.log(data);
+      var lat = (data.coord.lat);
+      var lon =(data.coord.lon);
       console.log(lat,lon);
       getCoor(lat, lon);
   })
 };
 
 function getCoor(lat, lon) {
-  var coordinateAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=%22"+lat+"%22&lon=%22"+lon+"%22&appid=dc51e86f28b41d77ff8619417bc35d08";
+  var coordinateAPI = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid=dc51e86f28b41d77ff8619417bc35d08";
 
   fetch(coordinateAPI)
     .then(function (response) {
